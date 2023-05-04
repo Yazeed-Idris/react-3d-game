@@ -34,15 +34,15 @@ export class World {
 
     start() {
         const cube = createCube()
-        cube.rotation.z += 2
-        cube.rotation.x += 1
+
+
 
         const directionalLight = createDirectionalLight()
         const ambientLight = createAmbientLight()
 
-        const controls = createControls(this.#camera, this.#renderer.domElement)
+        createControls(this.#camera, this.#renderer.domElement)
 
-        this.#scene.add(cube, directionalLight, ambientLight, controls)
+        this.#scene.add(cube, directionalLight, ambientLight)
         this.#camera.position.z += 5
 
         this.#animationLoop.start()

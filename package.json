@@ -1,7 +1,6 @@
 {
   "name": "react-3d-game",
   "private": true,
-  "homepage": "/react-3d-game/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
