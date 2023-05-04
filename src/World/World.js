@@ -4,6 +4,9 @@ import {createScene} from "./components/scene.js";
 import {createCube} from "./components/cube.js";
 import {Resizer} from "./systems/Resizer.js";
 import {Loop} from "./systems/Loop.js";
+import {createDirectionalLight} from "./components/directionalLight.js";
+import {createControls} from "./vendor/controls.js";
+import {createAmbientLight} from "./components/ambientLight.js";
 
 
 export class World {
@@ -31,7 +34,15 @@ export class World {
 
     start() {
         const cube = createCube()
-        this.#scene.add(cube)
+        cube.rotation.z += 2
+        cube.rotation.x += 1
+
+        const directionalLight = createDirectionalLight()
+        const ambientLight = createAmbientLight()
+
+        const controls = createControls(this.#camera, this.#renderer.domElement)
+
+        this.#scene.add(cube, directionalLight, ambientLight, controls)
         this.#camera.position.z += 5
 
         this.#animationLoop.start()
