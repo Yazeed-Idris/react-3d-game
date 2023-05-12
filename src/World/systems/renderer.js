@@ -5,7 +5,5 @@ export function createRenderer() {
         antialias: true,
     })
 
-    renderer.physicallyCorrectLights = true;
-
     return renderer
 }

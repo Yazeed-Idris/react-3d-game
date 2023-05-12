@@ -7,6 +7,9 @@ import {Loop} from "./systems/Loop.js";
 import {createDirectionalLight} from "./components/directionalLight.js";
 import {createControls} from "./vendor/controls.js";
 import {createAmbientLight} from "./components/ambientLight.js";
+import {createSkyboxTexture} from "./components/skybox_texture.js";
+import {createGroundTerrain} from "./components/ground.js";
+import {createCharacter} from "./components/character.js";
 
 
 export class World {
@@ -33,19 +36,27 @@ export class World {
     }
 
     start() {
-        const cube = createCube()
-
-
-
+        const skybox = createCube(1000, 1000, 1000, createSkyboxTexture())
         const directionalLight = createDirectionalLight()
         const ambientLight = createAmbientLight()
 
         createControls(this.#camera, this.#renderer.domElement)
 
-        this.#scene.add(cube, directionalLight, ambientLight)
+        this.#scene.add(skybox, directionalLight, ambientLight)
         this.#camera.position.z += 5
 
         this.#animationLoop.start()
+
+        const cube = createCube()
+        this.#scene.add(cube)
+
+        const ground = createGroundTerrain()
+        this.#scene.add(ground)
+
+        const character = createCharacter()
+        this.#animationLoop.updatables.push(character)
+        this.#scene.add(character)
+
     }
 
 }

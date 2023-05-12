@@ -6,12 +6,12 @@ export class Loop {
     #camera;
     #scene;
     #renderer;
-    #updatables;
+    updatables;
     constructor(camera, scene, renderer) {
         this.#camera = camera;
         this.#scene = scene;
         this.#renderer = renderer;
-        this.#updatables = []
+        this.updatables = []
     }
 
     start() {
@@ -29,7 +29,7 @@ export class Loop {
     tick() {
         const delta = clock.getDelta()
 
-        for (const updatable of this.#updatables) {
+        for (const updatable of this.updatables) {
             updatable.tick(delta)
         }
     }
